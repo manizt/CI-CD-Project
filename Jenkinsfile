@@ -1,3 +1,5 @@
+@Library('Shared Library') _
+
 pipeline{
 
     agent any
@@ -8,11 +10,23 @@ pipeline{
 
             steps{
 
+                gitCheckout(
+                    branch:"main",
+                    url:"https://github.com/manizt/CI-CD-Project-Jenkins-Sonarqube-Kubernetes-.git"
+                
+                
+                ) 
+                }
+
+            }
+            
+        stage("Unit test maven"){
+
+            steps{
                 script{
 
-                    git branch: 'main', url: 'https://github.com/manizt/CI-CD-Project-Jenkins-Sonarqube-Kubernetes-.git'
-                    
-
+                    mvnTest()
+                                                 
                 }
 
             }
